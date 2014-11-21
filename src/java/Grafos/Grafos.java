@@ -66,11 +66,11 @@ public class Grafos {
     public void AgregarAmistad(String ID1, String ID2){
         NodoAmistad Nodo1 = new NodoAmistad();
         Nodo1.setID(ID2);
-        BuscaPerfil(ID1).Relaciones.add(Nodo1);
+        this.Perfiles.get(BuscaPosPerfil(ID1)+1).Relaciones.add(Nodo1);
         
         NodoAmistad Nodo2 = new NodoAmistad();
         Nodo2.setID(ID1);
-        BuscaPerfil(ID2).Relaciones.add(Nodo2);
+        this.Perfiles.get(BuscaPosPerfil(ID2)+1).Relaciones.add(Nodo2);
     }
 
     /**
@@ -109,6 +109,23 @@ public class Grafos {
             }
         }
         return null;
+    }
+    
+    /**
+     * Método para buscar un perfil en la lista de Perfiles del grafo.
+     * @param ID
+     * @return NodoPerfil
+     */
+    public int BuscaPosPerfil(String ID){
+        int Cont = -1;
+        //Recorre la lista de Perfiles
+        for (NodoPerfil Perfil : this.Perfiles) {
+            if (Perfil.getID().equals(ID)) {
+                return Cont++;
+            }
+            Cont++;
+        }
+        return -1;
     }
     
     /**
@@ -211,14 +228,17 @@ public class Grafos {
             }
 
             //Comparacion que identifica si es el nodo que se busca
-            if(ID2.getID().equals(nodoDestino.getID())){
-                tDestino = nodoDestino;
-            break;
-        }
+            try{
+                if(ID2.getID().equals(nodoDestino.getID())){
+                    tDestino = nodoDestino;
+                break;
+                }
+            } catch (Exception e){}
+        
 
-        // Marca como visitado el nodo
-        NodoPerfil nodoVisit = BuscaPerfil(nodoTemp.getID());
-        nodoVisit.setEsVisitado(true);
+            // Marca como visitado el nodo
+            NodoPerfil nodoVisi = BuscaPerfil(nodoTemp.getID());
+            nodoVisi.setEsVisitado(true);
       }
 
       return getShortPath(tDestino);
