@@ -40,12 +40,12 @@ public class AdministradorPrincipal {
         throw new CloneNotSupportedException();
     }
 
-    public void insertarUsuario(String rutaFoto, String nombre, String edad, String carrera, String yearCarrera, String direccion, String telefono, String correo) {
-        Persona persona = new Persona(nombre, edad, carrera, yearCarrera, direccion, telefono, correo);
+    public void insertarUsuario(String nombre, String edad, String carrera, String yearCarrera, String direccion, String telefono, String correo, String rutaFoto) {
+        Persona persona = new Persona(nombre, edad, carrera, yearCarrera, direccion, telefono, correo, rutaFoto);
         listaPersonas.add(persona);
     }
 
-    public Persona obtenerPersona(String correo) {
+    public Persona getPersona(String correo) {
         Persona resultado = null;
         int total = listaPersonas.size();
         Persona persona;

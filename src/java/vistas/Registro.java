@@ -6,26 +6,49 @@
 package vistas;
 
 import administradores.AdministradorPrincipal;
+import datos.Constantes;
+import datos.Persona;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author RUBEN
- */
 public class Registro extends javax.swing.JFrame {
 
     private String rutaFoto = "";
+    private boolean isSesionIniciada = false;
+    private String correoActual = "";
 
     /**
      * Creates new form Registro
      */
     public Registro() {
         initComponents();
+        modificarRegistro();
+    }
+
+    private void modificarRegistro() {
+        ChangeListener changeListener = new ChangeListener() {
+            public void stateChanged(ChangeEvent changeEvent) {
+                JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+                if (sourceTabbedPane.equals(jTabbedPaneOpciones)) {
+                    int index = sourceTabbedPane.getSelectedIndex();
+                    System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
+                    if (sourceTabbedPane.getTitleAt(index).equals("Perfil") && isSesionIniciada == false) {
+                        JOptionPane.showMessageDialog(null,
+                                "Primero debe ingresar sesión",
+                                "información", JOptionPane.ERROR_MESSAGE);
+                        sourceTabbedPane.setSelectedIndex(Constantes.PAGINA_LOGIN);
+                    }
+                }
+            }
+        };
+        jTabbedPaneOpciones.addChangeListener(changeListener);
     }
 
     /**
@@ -37,8 +60,8 @@ public class Registro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jTabbedPaneOpciones = new javax.swing.JTabbedPane();
+        jLayeredPaneRegistro = new javax.swing.JLayeredPane();
         jLabelRegistroNombre = new javax.swing.JLabel();
         jTextFieldRegistroNombre = new javax.swing.JTextField();
         jLabelRegistroEdad = new javax.swing.JLabel();
@@ -57,114 +80,127 @@ public class Registro extends javax.swing.JFrame {
         jLabelFoto = new javax.swing.JLabel();
         jButtonRegistrar = new javax.swing.JButton();
         jLabelFondoRegistro = new javax.swing.JLabel();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
-        jLabelRegistroNombre1 = new javax.swing.JLabel();
-        jLabelRegistroEdad1 = new javax.swing.JLabel();
-        jLabelRegistroCarrera1 = new javax.swing.JLabel();
-        jLabelRegistroYearCarrera1 = new javax.swing.JLabel();
-        jLabelRegistroDireccion1 = new javax.swing.JLabel();
-        jLabelRegistroTelefono1 = new javax.swing.JLabel();
-        jLabelFondoRegistro1 = new javax.swing.JLabel();
-        jLabelRegistroCorreo1 = new javax.swing.JLabel();
-        jLabelRegistroNombre2 = new javax.swing.JLabel();
-        jLabelRegistroEdad2 = new javax.swing.JLabel();
-        jLabelRegistroCarrera2 = new javax.swing.JLabel();
-        jLabelRegistroYearCarrera2 = new javax.swing.JLabel();
-        jLabelRegistroDireccion2 = new javax.swing.JLabel();
-        jLabelRegistroTelefono2 = new javax.swing.JLabel();
+        jLayeredPaneLogin = new javax.swing.JLayeredPane();
+        jLabelLoginCorreo = new javax.swing.JLabel();
+        jTextFieldLoginCorreo = new javax.swing.JTextField();
+        jButtonLogin = new javax.swing.JButton();
+        jLabelFondoLogin = new javax.swing.JLabel();
+        jLayeredPanePerfil = new javax.swing.JLayeredPane();
+        jLabelPerfilNombreCampo = new javax.swing.JLabel();
+        jLabelPerfilEdadCampo = new javax.swing.JLabel();
+        jLabelPerfilCarreraCampo = new javax.swing.JLabel();
+        jLabelPerfilYearCarreraCampo = new javax.swing.JLabel();
+        jLabelPerfilDireccionCampo = new javax.swing.JLabel();
+        jLabelPerfilTelefonoCampo = new javax.swing.JLabel();
+        jLabelPerfilCorreoCampo = new javax.swing.JLabel();
+        jLabelFotoPerfil = new javax.swing.JLabel();
+        jLabelPerfilNombre = new javax.swing.JLabel();
+        jLabelPerfilEdad = new javax.swing.JLabel();
+        jLabelPerfilCarrera = new javax.swing.JLabel();
+        jLabelPerfilYearCarrera = new javax.swing.JLabel();
+        jLabelPerfilDireccion = new javax.swing.JLabel();
+        jLabelPerfilTelefono = new javax.swing.JLabel();
+        jLabelPerfilCorreo = new javax.swing.JLabel();
+        jLabelFondoPerfil = new javax.swing.JLabel();
+        jLayeredPanePerfilAmigos = new javax.swing.JLayeredPane();
+        jLabelPerfilNombreAmigoRegistrado = new javax.swing.JLabel();
+        jComboBoxAmigosRegistrados = new javax.swing.JComboBox();
+        jLabelPerfilNombreCampoAR = new javax.swing.JLabel();
+        jLabelPerfilEdadCampoAR = new javax.swing.JLabel();
+        jLabelPerfilCarreraCampo1AR = new javax.swing.JLabel();
+        jLabelPerfilYearCarreraCampoAR = new javax.swing.JLabel();
+        jLabelPerfilDireccionCampoAR = new javax.swing.JLabel();
+        jLabelPerfilTelefonoCampoAR = new javax.swing.JLabel();
+        jLabelPerfilCorreoCampoAR = new javax.swing.JLabel();
+        jLabelFotoPerfil1 = new javax.swing.JLabel();
+        jLabelPerfilNombre1 = new javax.swing.JLabel();
+        jLabelPerfilEdad1 = new javax.swing.JLabel();
+        jLabelPerfilCarrera1 = new javax.swing.JLabel();
+        jLabelPerfilYearCarrera1 = new javax.swing.JLabel();
+        jLabelPerfilDireccion1 = new javax.swing.JLabel();
+        jLabelPerfilTelefono1 = new javax.swing.JLabel();
+        jLabelPerfilCorreo1 = new javax.swing.JLabel();
+        jLabelFondoPerfilAmigosRegistrados = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 0, 0));
-        jTabbedPane1.setOpaque(true);
+        jTabbedPaneOpciones.setBackground(new java.awt.Color(0, 0, 0));
+        jTabbedPaneOpciones.setOpaque(true);
 
-        jLayeredPane1.setBackground(new java.awt.Color(87, 240, 164));
-        jLayeredPane1.setOpaque(true);
+        jLayeredPaneRegistro.setBackground(new java.awt.Color(87, 240, 164));
+        jLayeredPaneRegistro.setOpaque(true);
+        jLayeredPaneRegistro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelRegistroNombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelRegistroNombre.setForeground(new java.awt.Color(255, 255, 255));
         jLabelRegistroNombre.setText("Nombre");
         jLabelRegistroNombre.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane1.add(jLabelRegistroNombre);
-        jLabelRegistroNombre.setBounds(20, 30, 80, 37);
+        jLayeredPaneRegistro.add(jLabelRegistroNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 80, 37));
 
         jTextFieldRegistroNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldRegistroNombre.setPreferredSize(new java.awt.Dimension(150, 20));
-        jLayeredPane1.add(jTextFieldRegistroNombre);
-        jTextFieldRegistroNombre.setBounds(140, 30, 130, 30);
+        jLayeredPaneRegistro.add(jTextFieldRegistroNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 130, 30));
 
         jLabelRegistroEdad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelRegistroEdad.setForeground(new java.awt.Color(255, 255, 255));
         jLabelRegistroEdad.setText("Edad");
         jLabelRegistroEdad.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane1.add(jLabelRegistroEdad);
-        jLabelRegistroEdad.setBounds(20, 80, 80, 37);
+        jLayeredPaneRegistro.add(jLabelRegistroEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 80, 37));
 
         jTextFieldRegistroEdad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldRegistroEdad.setPreferredSize(new java.awt.Dimension(150, 20));
-        jLayeredPane1.add(jTextFieldRegistroEdad);
-        jTextFieldRegistroEdad.setBounds(140, 70, 130, 40);
+        jLayeredPaneRegistro.add(jTextFieldRegistroEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 40));
 
         jLabelRegistroCarrera.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelRegistroCarrera.setForeground(new java.awt.Color(255, 255, 255));
         jLabelRegistroCarrera.setText("Carrera");
         jLabelRegistroCarrera.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane1.add(jLabelRegistroCarrera);
-        jLabelRegistroCarrera.setBounds(20, 130, 80, 37);
+        jLayeredPaneRegistro.add(jLabelRegistroCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 80, 37));
 
         jTextFieldRegistroCarrera.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldRegistroCarrera.setPreferredSize(new java.awt.Dimension(150, 20));
-        jLayeredPane1.add(jTextFieldRegistroCarrera);
-        jTextFieldRegistroCarrera.setBounds(140, 120, 130, 40);
+        jLayeredPaneRegistro.add(jTextFieldRegistroCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 130, 40));
 
         jLabelRegistroYearCarrera.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelRegistroYearCarrera.setForeground(new java.awt.Color(255, 255, 255));
         jLabelRegistroYearCarrera.setText("Año carrera");
         jLabelRegistroYearCarrera.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane1.add(jLabelRegistroYearCarrera);
-        jLabelRegistroYearCarrera.setBounds(20, 180, 120, 37);
+        jLayeredPaneRegistro.add(jLabelRegistroYearCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 120, 37));
 
         jTextFieldRegistroYearCarrera.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldRegistroYearCarrera.setPreferredSize(new java.awt.Dimension(150, 20));
-        jLayeredPane1.add(jTextFieldRegistroYearCarrera);
-        jTextFieldRegistroYearCarrera.setBounds(140, 170, 130, 40);
+        jLayeredPaneRegistro.add(jTextFieldRegistroYearCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 130, 40));
 
         jLabelRegistroDireccion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelRegistroDireccion.setForeground(new java.awt.Color(255, 255, 255));
         jLabelRegistroDireccion.setText("Dirección");
         jLabelRegistroDireccion.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane1.add(jLabelRegistroDireccion);
-        jLabelRegistroDireccion.setBounds(20, 230, 80, 37);
+        jLayeredPaneRegistro.add(jLabelRegistroDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 80, 37));
 
         jTextFieldRegistroDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldRegistroDireccion.setPreferredSize(new java.awt.Dimension(150, 20));
-        jLayeredPane1.add(jTextFieldRegistroDireccion);
-        jTextFieldRegistroDireccion.setBounds(140, 220, 130, 37);
+        jLayeredPaneRegistro.add(jTextFieldRegistroDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 130, 37));
 
         jLabelRegistroTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelRegistroTelefono.setForeground(new java.awt.Color(255, 255, 255));
         jLabelRegistroTelefono.setText("Telefóno");
         jLabelRegistroTelefono.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane1.add(jLabelRegistroTelefono);
-        jLabelRegistroTelefono.setBounds(20, 280, 80, 37);
+        jLayeredPaneRegistro.add(jLabelRegistroTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 80, 37));
 
         jTextFieldRegistroTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldRegistroTelefono.setPreferredSize(new java.awt.Dimension(150, 20));
-        jLayeredPane1.add(jTextFieldRegistroTelefono);
-        jTextFieldRegistroTelefono.setBounds(140, 270, 130, 37);
+        jLayeredPaneRegistro.add(jTextFieldRegistroTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 130, 37));
 
         jLabelRegistroCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelRegistroCorreo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelRegistroCorreo.setText("Correo");
         jLabelRegistroCorreo.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane1.add(jLabelRegistroCorreo);
-        jLabelRegistroCorreo.setBounds(20, 330, 80, 37);
+        jLayeredPaneRegistro.add(jLabelRegistroCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 80, 37));
 
         jTextFieldRegistroCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldRegistroCorreo.setPreferredSize(new java.awt.Dimension(150, 20));
-        jLayeredPane1.add(jTextFieldRegistroCorreo);
-        jTextFieldRegistroCorreo.setBounds(140, 320, 130, 37);
+        jLayeredPaneRegistro.add(jTextFieldRegistroCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 130, 37));
 
         jLabelRegistroFoto.setBackground(new java.awt.Color(0, 0, 0));
         jLabelRegistroFoto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -178,13 +214,11 @@ public class Registro extends javax.swing.JFrame {
                 jLabelRegistroFotoMouseReleased(evt);
             }
         });
-        jLayeredPane1.add(jLabelRegistroFoto);
-        jLabelRegistroFoto.setBounds(290, 180, 150, 37);
+        jLayeredPaneRegistro.add(jLabelRegistroFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 150, 37));
 
         jLabelFoto.setBackground(new java.awt.Color(255, 255, 255));
         jLabelFoto.setOpaque(true);
-        jLayeredPane1.add(jLabelFoto);
-        jLabelFoto.setBounds(290, 30, 150, 140);
+        jLayeredPaneRegistro.add(jLabelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 150, 140));
 
         jButtonRegistrar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonRegistrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -196,101 +230,228 @@ public class Registro extends javax.swing.JFrame {
                 jButtonRegistrarActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButtonRegistrar);
-        jButtonRegistrar.setBounds(280, 320, 160, 30);
+        jLayeredPaneRegistro.add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 160, 30));
 
         jLabelFondoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoPrincipal.jpg"))); // NOI18N
-        jLayeredPane1.add(jLabelFondoRegistro);
-        jLabelFondoRegistro.setBounds(0, 0, 460, 390);
+        jLayeredPaneRegistro.add(jLabelFondoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 390));
 
-        jTabbedPane1.addTab("Registro", jLayeredPane1);
+        jTabbedPaneOpciones.addTab("Registro", jLayeredPaneRegistro);
 
-        jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLayeredPaneLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelRegistroNombre1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroNombre1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroNombre1.setText("Nombre");
-        jLabelRegistroNombre1.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 37));
+        jLabelLoginCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelLoginCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelLoginCorreo.setText("Correo");
+        jLabelLoginCorreo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPaneLogin.add(jLabelLoginCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
-        jLabelRegistroEdad1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroEdad1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroEdad1.setText("Edad");
-        jLabelRegistroEdad1.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroEdad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 80, 37));
+        jTextFieldLoginCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextFieldLoginCorreo.setPreferredSize(new java.awt.Dimension(150, 20));
+        jLayeredPaneLogin.add(jTextFieldLoginCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 30));
 
-        jLabelRegistroCarrera1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroCarrera1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroCarrera1.setText("Carrera");
-        jLabelRegistroCarrera1.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroCarrera1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 80, 37));
+        jButtonLogin.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonLogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLogin.setText("Ingresar");
+        jButtonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoginActionPerformed(evt);
+            }
+        });
+        jLayeredPaneLogin.add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
-        jLabelRegistroYearCarrera1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroYearCarrera1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroYearCarrera1.setText("Año carrera");
-        jLabelRegistroYearCarrera1.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroYearCarrera1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, 37));
+        jLabelFondoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoPrincipal.jpg"))); // NOI18N
+        jLayeredPaneLogin.add(jLabelFondoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabelRegistroDireccion1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroDireccion1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroDireccion1.setText("Dirección");
-        jLabelRegistroDireccion1.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 90, 37));
+        jTabbedPaneOpciones.addTab("Login", jLayeredPaneLogin);
 
-        jLabelRegistroTelefono1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroTelefono1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroTelefono1.setText("Telefóno");
-        jLabelRegistroTelefono1.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 80, 37));
+        jLayeredPanePerfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelFondoRegistro1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoPrincipal.jpg"))); // NOI18N
-        jLayeredPane2.add(jLabelFondoRegistro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabelPerfilNombreCampo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilNombreCampo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilNombreCampo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilNombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 140, 37));
 
-        jLabelRegistroCorreo1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroCorreo1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroCorreo1.setText("Correo");
-        jLabelRegistroCorreo1.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroCorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 223, 427, 37));
+        jLabelPerfilEdadCampo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilEdadCampo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilEdadCampo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilEdadCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 140, 37));
 
-        jLabelRegistroNombre2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroNombre2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroNombre2.setText("Nombre");
-        jLabelRegistroNombre2.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 70, 37));
+        jLabelPerfilCarreraCampo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCarreraCampo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCarreraCampo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilCarreraCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 140, 37));
 
-        jLabelRegistroEdad2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroEdad2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroEdad2.setText("Edad");
-        jLabelRegistroEdad2.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroEdad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 80, 37));
+        jLabelPerfilYearCarreraCampo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilYearCarreraCampo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilYearCarreraCampo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilYearCarreraCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 140, 37));
 
-        jLabelRegistroCarrera2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroCarrera2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroCarrera2.setText("Carrera");
-        jLabelRegistroCarrera2.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroCarrera2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 80, 37));
+        jLabelPerfilDireccionCampo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilDireccionCampo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilDireccionCampo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilDireccionCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 310, 37));
 
-        jLabelRegistroYearCarrera2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroYearCarrera2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroYearCarrera2.setText("Año carrera");
-        jLabelRegistroYearCarrera2.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroYearCarrera2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 100, 37));
+        jLabelPerfilTelefonoCampo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilTelefonoCampo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilTelefonoCampo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilTelefonoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 140, 37));
 
-        jLabelRegistroDireccion2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroDireccion2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroDireccion2.setText("Dirección");
-        jLabelRegistroDireccion2.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 90, 37));
+        jLabelPerfilCorreoCampo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCorreoCampo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCorreoCampo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilCorreoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 300, 37));
 
-        jLabelRegistroTelefono2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabelRegistroTelefono2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegistroTelefono2.setText("Telefóno");
-        jLabelRegistroTelefono2.setPreferredSize(new java.awt.Dimension(100, 14));
-        jLayeredPane2.add(jLabelRegistroTelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 80, 37));
+        jLabelFotoPerfil.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelFotoPerfil.setOpaque(true);
+        jLayeredPanePerfil.add(jLabelFotoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 150, 140));
 
-        jTabbedPane1.addTab("Perfil", jLayeredPane2);
+        jLabelPerfilNombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilNombre.setText("Nombre");
+        jLabelPerfilNombre.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 70, 37));
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 415));
+        jLabelPerfilEdad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilEdad.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilEdad.setText("Edad");
+        jLabelPerfilEdad.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 80, 37));
+
+        jLabelPerfilCarrera.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCarrera.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCarrera.setText("Carrera");
+        jLabelPerfilCarrera.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 80, 37));
+
+        jLabelPerfilYearCarrera.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilYearCarrera.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilYearCarrera.setText("Año carrera");
+        jLabelPerfilYearCarrera.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilYearCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 37));
+
+        jLabelPerfilDireccion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilDireccion.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilDireccion.setText("Dirección");
+        jLabelPerfilDireccion.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 90, 37));
+
+        jLabelPerfilTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilTelefono.setText("Telefóno");
+        jLabelPerfilTelefono.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 80, 37));
+
+        jLabelPerfilCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCorreo.setText("Correo");
+        jLabelPerfilCorreo.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfil.add(jLabelPerfilCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 140, 37));
+
+        jLabelFondoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoPrincipal.jpg"))); // NOI18N
+        jLayeredPanePerfil.add(jLabelFondoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jTabbedPaneOpciones.addTab("Perfil", jLayeredPanePerfil);
+
+        jLayeredPanePerfilAmigos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelPerfilNombreAmigoRegistrado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilNombreAmigoRegistrado.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilNombreAmigoRegistrado.setText("Amigos");
+        jLabelPerfilNombreAmigoRegistrado.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilNombreAmigoRegistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 37));
+
+        jComboBoxAmigosRegistrados.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLayeredPanePerfilAmigos.add(jComboBoxAmigosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 320, -1));
+
+        jLabelPerfilNombreCampoAR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilNombreCampoAR.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilNombreCampoAR.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilNombreCampoAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 140, 37));
+
+        jLabelPerfilEdadCampoAR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilEdadCampoAR.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilEdadCampoAR.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilEdadCampoAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 140, 37));
+
+        jLabelPerfilCarreraCampo1AR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCarreraCampo1AR.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCarreraCampo1AR.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilCarreraCampo1AR, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 140, 37));
+
+        jLabelPerfilYearCarreraCampoAR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilYearCarreraCampoAR.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilYearCarreraCampoAR.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilYearCarreraCampoAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 140, 37));
+
+        jLabelPerfilDireccionCampoAR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilDireccionCampoAR.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilDireccionCampoAR.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilDireccionCampoAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 310, 37));
+
+        jLabelPerfilTelefonoCampoAR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilTelefonoCampoAR.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilTelefonoCampoAR.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilTelefonoCampoAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 140, 37));
+
+        jLabelPerfilCorreoCampoAR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCorreoCampoAR.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCorreoCampoAR.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilCorreoCampoAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 300, 37));
+
+        jLabelFotoPerfil1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelFotoPerfil1.setOpaque(true);
+        jLayeredPanePerfilAmigos.add(jLabelFotoPerfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 150, 140));
+
+        jLabelPerfilNombre1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilNombre1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilNombre1.setText("Nombre");
+        jLabelPerfilNombre1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 70, 37));
+
+        jLabelPerfilEdad1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilEdad1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilEdad1.setText("Edad");
+        jLabelPerfilEdad1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilEdad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 80, 37));
+
+        jLabelPerfilCarrera1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCarrera1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCarrera1.setText("Carrera");
+        jLabelPerfilCarrera1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilCarrera1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 80, 37));
+
+        jLabelPerfilYearCarrera1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilYearCarrera1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilYearCarrera1.setText("Año carrera");
+        jLabelPerfilYearCarrera1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilYearCarrera1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 37));
+
+        jLabelPerfilDireccion1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilDireccion1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilDireccion1.setText("Dirección");
+        jLabelPerfilDireccion1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 90, 37));
+
+        jLabelPerfilTelefono1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilTelefono1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilTelefono1.setText("Telefóno");
+        jLabelPerfilTelefono1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 80, 37));
+
+        jLabelPerfilCorreo1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCorreo1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCorreo1.setText("Correo");
+        jLabelPerfilCorreo1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAmigos.add(jLabelPerfilCorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 140, 37));
+
+        jLabelFondoPerfilAmigosRegistrados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoPrincipal.jpg"))); // NOI18N
+        jLayeredPanePerfilAmigos.add(jLabelFondoPerfilAmigosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jTabbedPaneOpciones.addTab("Perfil Amigos", jLayeredPanePerfilAmigos);
+
+        getContentPane().add(jTabbedPaneOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 415));
 
         pack();
         setLocationRelativeTo(null);
@@ -317,11 +478,13 @@ public class Registro extends javax.swing.JFrame {
                 String direccion = jTextFieldRegistroDireccion.getText().trim();
                 String telefono = jTextFieldRegistroTelefono.getText().trim();
 
-                AdministradorPrincipal.getInstance().insertarUsuario(rutaFoto, nombre, edad, carrera, anoCarrera, direccion, telefono, correo);
+                AdministradorPrincipal.getInstance().insertarUsuario(nombre, edad, carrera, anoCarrera, direccion, telefono, correo, rutaFoto);
 
                 JOptionPane.showMessageDialog(null,
                         "Se ha registrado exitosamente",
                         "información", JOptionPane.INFORMATION_MESSAGE);
+
+                jTabbedPaneOpciones.setSelectedIndex(Constantes.PAGINA_LOGIN);
 
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -331,6 +494,26 @@ public class Registro extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
+
+    private void actualizarFotoRegistro(String rutaFoto) {
+        //Convierte la imagen
+        ImageIcon foto = new ImageIcon(rutaFoto);
+        Icon icono = new ImageIcon(foto.getImage().getScaledInstance(150,
+                140, Image.SCALE_SMOOTH));
+
+        //Asigna la imagen
+        jLabelFoto.setIcon(icono);
+    }
+
+    private void actualizarFotoPerfil(String rutaFoto) {
+        //Convierte la imagen
+        ImageIcon foto = new ImageIcon(rutaFoto);
+        Icon icono = new ImageIcon(foto.getImage().getScaledInstance(150,
+                140, Image.SCALE_SMOOTH));
+
+        //Asigna la imagen
+        jLabelFotoPerfil.setIcon(icono);
+    }
 
     private void jLabelRegistroFotoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegistroFotoMouseReleased
         //Crea un objeto de dialogo JFileChooser
@@ -349,14 +532,7 @@ public class Registro extends javax.swing.JFrame {
                 //Obtener ruta y nombre al hacer click
                 String file = elemento.getSelectedFile().getPath();
                 rutaFoto = file;
-
-                //Convierte la imagen
-                ImageIcon foto = new ImageIcon(rutaFoto);
-                Icon icono = new ImageIcon(foto.getImage().getScaledInstance(150,
-                        140, Image.SCALE_SMOOTH));
-
-                //Asigna la imagen
-                jLabelFoto.setIcon(icono);
+                actualizarFotoRegistro(rutaFoto);
 
             } catch (Exception ex) {
             }
@@ -364,6 +540,47 @@ public class Registro extends javax.swing.JFrame {
 
         this.repaint();
     }//GEN-LAST:event_jLabelRegistroFotoMouseReleased
+
+    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+        if (isSesionIniciada == false) {
+            correoActual = jTextFieldLoginCorreo.getText().trim();
+            if (!correoActual.isEmpty()) {
+                boolean existePersona = AdministradorPrincipal.getInstance().existePersona(correoActual);
+                if (existePersona) {
+                    JOptionPane.showMessageDialog(null,
+                            "Bienvenid@",
+                            "información", JOptionPane.INFORMATION_MESSAGE);
+                    isSesionIniciada = true;
+                    actualizarPerfil(correoActual);
+                    jTabbedPaneOpciones.setSelectedIndex(Constantes.PAGINA_PERFIL);
+
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Usuario no registrado",
+                            "información", JOptionPane.ERROR_MESSAGE);
+                    jTabbedPaneOpciones.setSelectedIndex(Constantes.PAGINA_REGISTRO);
+                }
+            }
+
+        } else {
+            actualizarPerfil(correoActual);
+            jTabbedPaneOpciones.setSelectedIndex(Constantes.PAGINA_PERFIL);
+
+        }
+    }//GEN-LAST:event_jButtonLoginActionPerformed
+
+    private void actualizarPerfil(String correo) {
+        Persona persona = AdministradorPrincipal.getInstance().getPersona(correo);
+        jLabelPerfilNombreCampo.setText(persona.getNombre());
+        jLabelPerfilEdadCampo.setText(persona.getEdad());
+        jLabelPerfilCarreraCampo.setText(persona.getCarrera());
+        jLabelPerfilYearCarreraCampo.setText(persona.getAnoCarrera());
+        jLabelPerfilTelefonoCampo.setText(persona.getTelefono());
+        jLabelPerfilCorreoCampo.setText(persona.getCorreo());
+        jLabelPerfilDireccionCampo.setText(persona.getDireccion());
+
+        actualizarFotoPerfil(persona.getRutaFoto());
+    }
 
     public boolean veficarCampos() {
         boolean resultado = false;
@@ -418,34 +635,60 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonLogin;
     private javax.swing.JButton jButtonRegistrar;
+    private javax.swing.JComboBox jComboBoxAmigosRegistrados;
+    private javax.swing.JLabel jLabelFondoLogin;
+    private javax.swing.JLabel jLabelFondoPerfil;
+    private javax.swing.JLabel jLabelFondoPerfilAmigosRegistrados;
     private javax.swing.JLabel jLabelFondoRegistro;
-    private javax.swing.JLabel jLabelFondoRegistro1;
     private javax.swing.JLabel jLabelFoto;
+    private javax.swing.JLabel jLabelFotoPerfil;
+    private javax.swing.JLabel jLabelFotoPerfil1;
+    private javax.swing.JLabel jLabelLoginCorreo;
+    private javax.swing.JLabel jLabelPerfilCarrera;
+    private javax.swing.JLabel jLabelPerfilCarrera1;
+    private javax.swing.JLabel jLabelPerfilCarreraCampo;
+    private javax.swing.JLabel jLabelPerfilCarreraCampo1AR;
+    private javax.swing.JLabel jLabelPerfilCorreo;
+    private javax.swing.JLabel jLabelPerfilCorreo1;
+    private javax.swing.JLabel jLabelPerfilCorreoCampo;
+    private javax.swing.JLabel jLabelPerfilCorreoCampoAR;
+    private javax.swing.JLabel jLabelPerfilDireccion;
+    private javax.swing.JLabel jLabelPerfilDireccion1;
+    private javax.swing.JLabel jLabelPerfilDireccionCampo;
+    private javax.swing.JLabel jLabelPerfilDireccionCampoAR;
+    private javax.swing.JLabel jLabelPerfilEdad;
+    private javax.swing.JLabel jLabelPerfilEdad1;
+    private javax.swing.JLabel jLabelPerfilEdadCampo;
+    private javax.swing.JLabel jLabelPerfilEdadCampoAR;
+    private javax.swing.JLabel jLabelPerfilNombre;
+    private javax.swing.JLabel jLabelPerfilNombre1;
+    private javax.swing.JLabel jLabelPerfilNombreAmigoRegistrado;
+    private javax.swing.JLabel jLabelPerfilNombreCampo;
+    private javax.swing.JLabel jLabelPerfilNombreCampoAR;
+    private javax.swing.JLabel jLabelPerfilTelefono;
+    private javax.swing.JLabel jLabelPerfilTelefono1;
+    private javax.swing.JLabel jLabelPerfilTelefonoCampo;
+    private javax.swing.JLabel jLabelPerfilTelefonoCampoAR;
+    private javax.swing.JLabel jLabelPerfilYearCarrera;
+    private javax.swing.JLabel jLabelPerfilYearCarrera1;
+    private javax.swing.JLabel jLabelPerfilYearCarreraCampo;
+    private javax.swing.JLabel jLabelPerfilYearCarreraCampoAR;
     private javax.swing.JLabel jLabelRegistroCarrera;
-    private javax.swing.JLabel jLabelRegistroCarrera1;
-    private javax.swing.JLabel jLabelRegistroCarrera2;
     private javax.swing.JLabel jLabelRegistroCorreo;
-    private javax.swing.JLabel jLabelRegistroCorreo1;
     private javax.swing.JLabel jLabelRegistroDireccion;
-    private javax.swing.JLabel jLabelRegistroDireccion1;
-    private javax.swing.JLabel jLabelRegistroDireccion2;
     private javax.swing.JLabel jLabelRegistroEdad;
-    private javax.swing.JLabel jLabelRegistroEdad1;
-    private javax.swing.JLabel jLabelRegistroEdad2;
     private javax.swing.JLabel jLabelRegistroFoto;
     private javax.swing.JLabel jLabelRegistroNombre;
-    private javax.swing.JLabel jLabelRegistroNombre1;
-    private javax.swing.JLabel jLabelRegistroNombre2;
     private javax.swing.JLabel jLabelRegistroTelefono;
-    private javax.swing.JLabel jLabelRegistroTelefono1;
-    private javax.swing.JLabel jLabelRegistroTelefono2;
     private javax.swing.JLabel jLabelRegistroYearCarrera;
-    private javax.swing.JLabel jLabelRegistroYearCarrera1;
-    private javax.swing.JLabel jLabelRegistroYearCarrera2;
-    private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLayeredPane jLayeredPaneLogin;
+    private javax.swing.JLayeredPane jLayeredPanePerfil;
+    private javax.swing.JLayeredPane jLayeredPanePerfilAmigos;
+    private javax.swing.JLayeredPane jLayeredPaneRegistro;
+    private javax.swing.JTabbedPane jTabbedPaneOpciones;
+    private javax.swing.JTextField jTextFieldLoginCorreo;
     private javax.swing.JTextField jTextFieldRegistroCarrera;
     private javax.swing.JTextField jTextFieldRegistroCorreo;
     private javax.swing.JTextField jTextFieldRegistroDireccion;

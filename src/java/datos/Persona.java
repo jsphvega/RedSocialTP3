@@ -14,8 +14,9 @@ public class Persona {
     private String direccion;
     private String telefono;
     private String correo;
+    private String rutaFoto;
 
-    public Persona(String nombre, String edad, String carrera, String anoCarrera, String direccion, String telefono, String correo) {
+    public Persona(String nombre, String edad, String carrera, String anoCarrera, String direccion, String telefono, String correo, String rutaFoto) {
         this.nombre = nombre;
         this.edad = edad;
         this.carrera = carrera;
@@ -23,7 +24,10 @@ public class Persona {
         this.direccion = direccion;
         this.telefono = telefono;
         this.correo = correo;
+        this.rutaFoto = rutaFoto;
     }
+
+
 
     public String getCorreo() {
         return correo;
@@ -79,6 +83,14 @@ public class Persona {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getRutaFoto() {
+        return rutaFoto;
+    }
+
+    public void setRutaFoto(String rutaFoto) {
+        this.rutaFoto = rutaFoto;
     }
 
 }
