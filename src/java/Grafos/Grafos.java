@@ -1,6 +1,7 @@
 package Grafos;
 
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -12,6 +13,7 @@ import java.util.LinkedList;
 public class Grafos {
     //Variables Globales
     public LinkedList <NodoPerfil> Perfiles;
+    public int TamañoPerfil = 0;
 
     /**
      * Método Constructor de la clase.
@@ -60,18 +62,15 @@ public class Grafos {
      * Método que permite agregar una relación de amistad al grafo
      * @param ID1
      * @param ID2
-     * @param Etiqueta
      */
-    public void AgregarAmistad(String ID1, String ID2, String Etiqueta){
+    public void AgregarAmistad(String ID1, String ID2){
         NodoAmistad Nodo1 = new NodoAmistad();
-        Nodo1.setEtiqueta(Etiqueta);
         Nodo1.setID(ID2);
-        BuscaPerfil(ID1).Aristas.add(Nodo1);
+        BuscaPerfil(ID1).Relaciones.add(Nodo1);
         
         NodoAmistad Nodo2 = new NodoAmistad();
-        Nodo2.setEtiqueta(Etiqueta);
         Nodo2.setID(ID1);
-        BuscaPerfil(ID2).Aristas.add(Nodo2);
+        BuscaPerfil(ID2).Relaciones.add(Nodo2);
     }
 
     /**
@@ -93,8 +92,8 @@ public class Grafos {
      * @param ID2
      */
     public void EliminarAmistad(String ID1, String ID2){
-        BuscaPerfil(ID1).Aristas.remove(BuscaAmistad(ID1, ID2));
-        BuscaPerfil(ID2).Aristas.remove(BuscaAmistad(ID2, ID1));
+        BuscaPerfil(ID1).Relaciones.remove(BuscaAmistad(ID1, ID2));
+        BuscaPerfil(ID2).Relaciones.remove(BuscaAmistad(ID2, ID1));
     }
     
     /**
@@ -123,7 +122,7 @@ public class Grafos {
         
         //Busca en la lista de aristas de ese perfil para identificar si se 
         //encuentra la amistad buscada.
-        for (NodoAmistad Arista : Temp.Aristas) {
+        for (NodoAmistad Arista : Temp.Relaciones) {
             if (Arista.getID().equals(ID2)) {
                 return Arista;
             }
@@ -142,6 +141,7 @@ public class Grafos {
 
     /**
      * Método para verificar todos los nodos del grafo
+     * @return 
      */
     public boolean IsTodosVisitados(){
         for (NodoPerfil vertice : this.Perfiles) {
@@ -150,5 +150,97 @@ public class Grafos {
             }
         }
         return true;	//Si encuentra uno visitado retorna true
+    }
+    
+    /**
+     * Algoritmo que determina el camino mas corto utilizando dijkstra.
+     * @param ID1
+     * @param ID2
+     * @return Recorrido mas corto
+     */
+    public ArrayList<NodoPerfil> dijkstra(NodoPerfil ID1, NodoPerfil ID2){
+        //Variables Locales
+        Queue ListaRecorrido = new Queue();
+        NodoPerfil tDestino = null;
+        NodoPerfil nodoDestino = null;
+        
+        //Se le establece la distancia como 0. Se implementa una cola.
+        inicializarVisitados();
+        ID1.setDistancia(0);
+        ListaRecorrido.add(ID1);
+
+        //Contador para comparar visitados. 
+        int cont = ID1.TamañoRelaciones + 1;
+
+        //Iteracion hasta que la cola quede vacia
+        while (!ListaRecorrido.isEmpty()){
+
+            int cont2 = 0;
+            NodoPerfil nodoTemp;
+
+            //Bucle para asignar los visitados y comparacion
+            for(NodoPerfil nodoVist : Perfiles){
+                if(nodoVist.isEsVisitado() == true){
+                    cont2 ++;
+                }
+            }
+            if(cont2 == cont){
+                return null;
+            }
+
+            nodoTemp = ListaRecorrido.poll();
+
+            //Lista para cada relacion entre amigos
+            LinkedList<NodoAmistad> lista = nodoTemp.Relaciones;
+
+            //Analiza cada nodo con su peso y los pesos de la lista de adyacencia
+            //Ademas suma o actualiza si es necesario
+            for (NodoAmistad relaciones : lista){
+
+                nodoDestino = new NodoPerfil();
+                int distT = nodoTemp.getDistancia();
+
+                if (distT < nodoDestino.getDistancia()){
+
+                    // Actualiza el nodo que sigue y se establece el antecesor
+                    ListaRecorrido.remove(nodoDestino);
+                    nodoDestino.setDistancia(distT);
+                    nodoDestino.setAnterior(nodoTemp);
+                    ListaRecorrido.add(nodoDestino);
+                }
+            }
+
+            //Comparacion que identifica si es el nodo que se busca
+            if(ID2.getID().equals(nodoDestino.getID())){
+                tDestino = nodoDestino;
+            break;
+        }
+
+        // Marca como visitado el nodo
+        NodoPerfil nodoVisit = BuscaPerfil(nodoTemp.getID());
+        nodoVisit.setEsVisitado(true);
+      }
+
+      return getShortPath(tDestino);
+    }
+    
+    /**
+    * Algoritmo que determina el camino mas corto utilizando dijkstra
+    * @param target Nodo buscado
+    * @return Lista del camino
+    */
+    private ArrayList<NodoPerfil> getShortPath(NodoPerfil target){
+
+        ArrayList<NodoPerfil> path = new ArrayList<>();
+        // Itera los nodos antecesores hasta llegar a nulo, encontrando el camino corto
+
+        for (NodoPerfil vertex = target; vertex != null; vertex = vertex.getAnterior()){
+            path.add(vertex);
+        }
+
+
+        // Se le da vuelta para mostrar el camino correcto
+        //Collections.reverse(path);
+        return path;
     }
 }
