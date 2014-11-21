@@ -211,14 +211,17 @@ public class Grafos {
             }
 
             //Comparacion que identifica si es el nodo que se busca
-            if(ID2.getID().equals(nodoDestino.getID())){
-                tDestino = nodoDestino;
-            break;
-        }
+            try{
+                if(ID2.getID().equals(nodoDestino.getID())){
+                    tDestino = nodoDestino;
+                break;
+                }
+            } catch (Exception e){}
+        
 
-        // Marca como visitado el nodo
-        NodoPerfil nodoVisit = BuscaPerfil(nodoTemp.getID());
-        nodoVisit.setEsVisitado(true);
+            // Marca como visitado el nodo
+            NodoPerfil nodoVisi = BuscaPerfil(nodoTemp.getID());
+            nodoVisi.setEsVisitado(true);
       }
 
       return getShortPath(tDestino);
