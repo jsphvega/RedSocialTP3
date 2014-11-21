@@ -57,7 +57,7 @@ public class Grafos {
     }
 
     /**
-     * Método para agregar una relación de amistad al grafo
+     * Método que permite agregar una relación de amistad al grafo
      * @param ID1
      * @param ID2
      * @param Etiqueta
@@ -66,36 +66,75 @@ public class Grafos {
         NodoAmistad Nodo1 = new NodoAmistad();
         Nodo1.setEtiqueta(Etiqueta);
         Nodo1.setID(ID2);
-        buscarVertice(ID1).Aristas.add(Nodo1);
+        BuscaPerfil(ID1).Aristas.add(Nodo1);
         
         NodoAmistad Nodo2 = new NodoAmistad();
         Nodo2.setEtiqueta(Etiqueta);
         Nodo2.setID(ID1);
-        buscarVertice(ID2).Aristas.add(Nodo2);
+        BuscaPerfil(ID2).Aristas.add(Nodo2);
     }
 
-    //M�todo para buscar un v�rtice en la lista de Perfiles del grafo seg�Nodo el dato indicado
-    public NodoPerfil buscarVertice(String v){
+    /**
+     * Método que permite eliminar un vértice del grafo.
+     * @param ID
+     */
+    public void EliminarPerfil(String ID){
+        this.Perfiles.remove(BuscaPerfil(ID));
+        
+        //Elimina todas las amistades en las que el perfil eliminado aparezca
+        for (NodoPerfil Perfil : Perfiles) {
+            EliminarAmistad(Perfil.getID(), ID);
+        }
+    }
+
+    /**
+     * Método para eliminar una amistad de un perfil ID1 a un perfil ID2
+     * @param ID1
+     * @param ID2
+     */
+    public void EliminarAmistad(String ID1, String ID2){
+        BuscaPerfil(ID1).Aristas.remove(BuscaAmistad(ID1, ID2));
+        BuscaPerfil(ID2).Aristas.remove(BuscaAmistad(ID2, ID1));
+    }
+    
+    /**
+     * Método para buscar un perfil en la lista de Perfiles del grafo.
+     * @param ID
+     * @return NodoPerfil
+     */
+    public NodoPerfil BuscaPerfil(String ID){
         //Recorre la lista de Perfiles
-        for (NodoPerfil vertice : this.Perfiles) {
-            if (vertice.getDato().equals(v)) {
-                return vertice;
+        for (NodoPerfil Perfil : this.Perfiles) {
+            if (Perfil.getID().equals(ID)) {
+                return Perfil;
             }
         }
         return null;
     }
-
-    //M�todo para buscar una arista en la lista de aristas
-    public NodoAmistad buscarArista(String origen, String destino){
-        NodoPerfil temp = buscarVertice(origen);  //Busca el v�rtice de origen
-        //Busca en la lista de aristas de ese v�rtice para identificar si se encuentra la arista buscada
-        for (NodoAmistad Arista : temp.Aristas) {
-            if (Arista.getVertice().equals(destino)) {
+    
+    /**
+     * Método que busca una amistada en la lista
+     * @param ID1
+     * @param ID2
+     * @return NodoAmistad
+     */
+    public NodoAmistad BuscaAmistad(String ID1, String ID2){
+        NodoPerfil Temp = BuscaPerfil(ID1);  //Busca el perfil de ID1
+        
+        //Busca en la lista de aristas de ese perfil para identificar si se 
+        //encuentra la amistad buscada.
+        for (NodoAmistad Arista : Temp.Aristas) {
+            if (Arista.getID().equals(ID2)) {
                 return Arista;
             }
         }
         return null;
     }
+    
+    
+    
+
+    
 
 
     //M�todo para buscar el primer v�rtice del grafo que est� sin visitar
@@ -140,28 +179,8 @@ public class Grafos {
         return true;	//Si encuentra uno visitado retorna true
     }
 
-    //M�todo para eliminar un v�rtice del grafo
-    public void eliminarVertice(String v){
-        this.Perfiles.remove(buscarVertice(v));  //Elimina el v�rtice de la lista de v�rtices
-        //Elimina todas las aristas en las que el v�rtice eliminado aparezca como destino
-        for (NodoPerfil vertice : Perfiles) {
-            eliminarArista(vertice.getDato(), v);
-        }
-    }
-
-    //M�todo para eliminar una arista de un v�rtice origen a un v�rtice destino dado
-    public void eliminarArista(String origen, String destino){
-        //Verifica si el grafo es no dirigido
-        if((buscarArista(origen,destino) != null) && (buscarArista(destino,origen) != null)){ //Busca si existe arista de origen a destino y viceversa
-            //Verifica si el peso de ambas aristas es igual con lo que se asume que es un grafo no dirigido
-            if(buscarArista(origen,destino).getEtiqueta().equals(buscarArista(destino,origen).getEtiqueta())){
-                    buscarVertice(destino).Aristas.remove(buscarArista(destino, origen));
-            }
-        }
-        //Elimina el arista de la lista de aristas del v�rtice origen
-        buscarVertice(origen).Aristas.remove(buscarArista(origen, destino));
-
-    }
+    
+    
 
     //M�todo para realizar el recorrido en profundidad en el grafo
     public void recorridoProfundidad(String inicial){
@@ -173,7 +192,7 @@ public class Grafos {
 
     private void DFS(String inicial){
 
-        NodoPerfil actual = buscarVertice(inicial); //Busca el v�rtice inicial para el recorrido en la lista de v�rtices
+        NodoPerfil actual = BuscaPerfil(inicial); //Busca el v�rtice inicial para el recorrido en la lista de v�rtices
 
         while(actual != null)  //Ciclo para verificar que todos los v�rtices est�Nodo visitados
         {
@@ -185,7 +204,7 @@ public class Grafos {
 
             //Revisa todos los nodos adyacentes del nodo reci�Nodo visitado
             for (NodoAmistad Arista : actual.Aristas) {
-                if (!buscarVertice(Arista.getVertice()).isEsVisitado()) {
+                if (!BuscaPerfil(Arista.getVertice()).isEsVisitado()) {
                     DFS(Arista.getVertice()); //Hace la llamada recursiva para realizar el recorrido en el nodo adyacente
                 }
             }
@@ -203,7 +222,7 @@ public class Grafos {
         inicializarVisitados(); //Inicializa todos los nodos como no visitados
 
         System.out.println("Recorrido en anchura");
-        actual = buscarVertice(inicial); //Busca el v�rtice para iniciar el recorrido en la lista de v�rtices del grafo
+        actual = BuscaPerfil(inicial); //Busca el v�rtice para iniciar el recorrido en la lista de v�rtices del grafo
 
         //Ciclo para verificar que todos los nodos est�Nodo visitados
         while(actual != null)
@@ -216,10 +235,10 @@ public class Grafos {
             }
             //Busca todos los v�rtices adyacentes al v�rtice reci�Nodo visitado
             for(int j = 0; j < actual.Aristas.size(); j++){
-                if(! buscarVertice(actual.Aristas.get(j).getVertice()).isEsVisitado()){ //Si el v�rtice no se ha visitado aun
+                if(! BuscaPerfil(actual.Aristas.get(j).getVertice()).isEsVisitado()){ //Si el v�rtice no se ha visitado aun
                     System.out.print(actual.Aristas.get(j).getVertice() + " ");  //Se imprime el v�rtice
-                    Cola.add(buscarVertice(actual.Aristas.get(j).getVertice()));    //Se agrega el v�rtice a la cola
-                    buscarVertice(actual.Aristas.get(j).getVertice()).setEsVisitado(true);  //Se indica que el v�rtice ha sido visitado
+                    Cola.add(BuscaPerfil(actual.Aristas.get(j).getVertice()));    //Se agrega el v�rtice a la cola
+                    BuscaPerfil(actual.Aristas.get(j).getVertice()).setEsVisitado(true);  //Se indica que el v�rtice ha sido visitado
                 }
             }
 
@@ -230,7 +249,7 @@ public class Grafos {
 
                 for(int x = 0; x < Cola.getFirst().Aristas.size(); x++){
                     //Obtiene el primer v�rtice en la cola
-                    temp1 = buscarVertice(Cola.getFirst().Aristas.get(x).getVertice());
+                    temp1 = BuscaPerfil(Cola.getFirst().Aristas.get(x).getVertice());
                     if(!temp1.isEsVisitado()){  //Verifica si el primero de la cola no ha sido visitado
                         System.out.print(temp1.getDato() + " "); //Imprime el v�rtice
                         temp1.setEsVisitado(true);	//Indica que el v�rtice se ha visitado
