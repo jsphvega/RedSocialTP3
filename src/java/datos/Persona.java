@@ -5,7 +5,11 @@
  */
 package datos;
 
+import java.util.LinkedList;
+
 public class Persona {
+    
+    private LinkedList<Persona> listaPersonas = new LinkedList<Persona>();
 
     private String nombre;
     private String edad;
@@ -27,6 +31,9 @@ public class Persona {
         this.rutaFoto = rutaFoto;
     }
 
+    public void agregarAmigo(Persona persona){
+        listaPersonas.add(persona);
+    }
 
 
     public String getCorreo() {

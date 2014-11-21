@@ -41,7 +41,12 @@ public class Registro extends javax.swing.JFrame {
                     System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
                     if (sourceTabbedPane.getTitleAt(index).equals("Perfil") && isSesionIniciada == false) {
                         JOptionPane.showMessageDialog(null,
-                                "Primero debe ingresar sesión",
+                                "Primero debe iniciar sesión",
+                                "información", JOptionPane.ERROR_MESSAGE);
+                        sourceTabbedPane.setSelectedIndex(Constantes.PAGINA_LOGIN);
+                    } else if (sourceTabbedPane.getTitleAt(index).equals("Perfil Amigos") && isSesionIniciada == false) {
+                        JOptionPane.showMessageDialog(null,
+                                "Primero debe iniciar sesión",
                                 "información", JOptionPane.ERROR_MESSAGE);
                         sourceTabbedPane.setSelectedIndex(Constantes.PAGINA_LOGIN);
                     }
