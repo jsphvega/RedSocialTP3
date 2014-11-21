@@ -126,6 +126,25 @@ public class Registro extends javax.swing.JFrame {
         jLabelPerfilTelefono1 = new javax.swing.JLabel();
         jLabelPerfilCorreo1 = new javax.swing.JLabel();
         jLabelFondoPerfilAmigosRegistrados = new javax.swing.JLabel();
+        jLayeredPanePerfilAgregarAmigos = new javax.swing.JLayeredPane();
+        jLabelPerfilNombreAmigoRegistrado1 = new javax.swing.JLabel();
+        jComboBoxAmigosRegistrados1 = new javax.swing.JComboBox();
+        jLabelPerfilNombreCampoAR1 = new javax.swing.JLabel();
+        jLabelPerfilEdadCampoAR1 = new javax.swing.JLabel();
+        jLabelPerfilCarreraCampo1AR1 = new javax.swing.JLabel();
+        jLabelPerfilYearCarreraCampoAR1 = new javax.swing.JLabel();
+        jLabelPerfilDireccionCampoAR1 = new javax.swing.JLabel();
+        jLabelPerfilTelefonoCampoAR1 = new javax.swing.JLabel();
+        jLabelPerfilCorreoCampoAR1 = new javax.swing.JLabel();
+        jLabelFotoPerfil2 = new javax.swing.JLabel();
+        jLabelPerfilNombre2 = new javax.swing.JLabel();
+        jLabelPerfilEdad2 = new javax.swing.JLabel();
+        jLabelPerfilCarrera2 = new javax.swing.JLabel();
+        jLabelPerfilYearCarrera2 = new javax.swing.JLabel();
+        jLabelPerfilDireccion2 = new javax.swing.JLabel();
+        jLabelPerfilTelefono2 = new javax.swing.JLabel();
+        jLabelPerfilCorreo2 = new javax.swing.JLabel();
+        jLabelFondoPerfilAmigosRegistrados1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -456,6 +475,103 @@ public class Registro extends javax.swing.JFrame {
 
         jTabbedPaneOpciones.addTab("Perfil Amigos", jLayeredPanePerfilAmigos);
 
+        jLayeredPanePerfilAgregarAmigos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelPerfilNombreAmigoRegistrado1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilNombreAmigoRegistrado1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilNombreAmigoRegistrado1.setText("Amigos");
+        jLabelPerfilNombreAmigoRegistrado1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilNombreAmigoRegistrado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 37));
+
+        jComboBoxAmigosRegistrados1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLayeredPanePerfilAgregarAmigos.add(jComboBoxAmigosRegistrados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 320, -1));
+
+        jLabelPerfilNombreCampoAR1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilNombreCampoAR1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilNombreCampoAR1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilNombreCampoAR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 140, 37));
+
+        jLabelPerfilEdadCampoAR1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilEdadCampoAR1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilEdadCampoAR1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilEdadCampoAR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 140, 37));
+
+        jLabelPerfilCarreraCampo1AR1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCarreraCampo1AR1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCarreraCampo1AR1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilCarreraCampo1AR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 140, 37));
+
+        jLabelPerfilYearCarreraCampoAR1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilYearCarreraCampoAR1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilYearCarreraCampoAR1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilYearCarreraCampoAR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 140, 37));
+
+        jLabelPerfilDireccionCampoAR1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilDireccionCampoAR1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilDireccionCampoAR1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilDireccionCampoAR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 310, 37));
+
+        jLabelPerfilTelefonoCampoAR1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilTelefonoCampoAR1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilTelefonoCampoAR1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilTelefonoCampoAR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 140, 37));
+
+        jLabelPerfilCorreoCampoAR1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCorreoCampoAR1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCorreoCampoAR1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilCorreoCampoAR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 300, 37));
+
+        jLabelFotoPerfil2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelFotoPerfil2.setOpaque(true);
+        jLayeredPanePerfilAgregarAmigos.add(jLabelFotoPerfil2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 150, 140));
+
+        jLabelPerfilNombre2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilNombre2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilNombre2.setText("Nombre");
+        jLabelPerfilNombre2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 70, 37));
+
+        jLabelPerfilEdad2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilEdad2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilEdad2.setText("Edad");
+        jLabelPerfilEdad2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilEdad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 80, 37));
+
+        jLabelPerfilCarrera2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCarrera2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCarrera2.setText("Carrera");
+        jLabelPerfilCarrera2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilCarrera2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 80, 37));
+
+        jLabelPerfilYearCarrera2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilYearCarrera2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilYearCarrera2.setText("Año carrera");
+        jLabelPerfilYearCarrera2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilYearCarrera2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 37));
+
+        jLabelPerfilDireccion2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilDireccion2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilDireccion2.setText("Dirección");
+        jLabelPerfilDireccion2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 90, 37));
+
+        jLabelPerfilTelefono2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilTelefono2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilTelefono2.setText("Telefóno");
+        jLabelPerfilTelefono2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilTelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 80, 37));
+
+        jLabelPerfilCorreo2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabelPerfilCorreo2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPerfilCorreo2.setText("Correo");
+        jLabelPerfilCorreo2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLayeredPanePerfilAgregarAmigos.add(jLabelPerfilCorreo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 140, 37));
+
+        jLabelFondoPerfilAmigosRegistrados1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoPrincipal.jpg"))); // NOI18N
+        jLayeredPanePerfilAgregarAmigos.add(jLabelFondoPerfilAmigosRegistrados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jTabbedPaneOpciones.addTab("Agregar amigos", jLayeredPanePerfilAgregarAmigos);
+
         getContentPane().add(jTabbedPaneOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 415));
 
         pack();
@@ -643,43 +759,61 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JComboBox jComboBoxAmigosRegistrados;
+    private javax.swing.JComboBox jComboBoxAmigosRegistrados1;
     private javax.swing.JLabel jLabelFondoLogin;
     private javax.swing.JLabel jLabelFondoPerfil;
     private javax.swing.JLabel jLabelFondoPerfilAmigosRegistrados;
+    private javax.swing.JLabel jLabelFondoPerfilAmigosRegistrados1;
     private javax.swing.JLabel jLabelFondoRegistro;
     private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelFotoPerfil;
     private javax.swing.JLabel jLabelFotoPerfil1;
+    private javax.swing.JLabel jLabelFotoPerfil2;
     private javax.swing.JLabel jLabelLoginCorreo;
     private javax.swing.JLabel jLabelPerfilCarrera;
     private javax.swing.JLabel jLabelPerfilCarrera1;
+    private javax.swing.JLabel jLabelPerfilCarrera2;
     private javax.swing.JLabel jLabelPerfilCarreraCampo;
     private javax.swing.JLabel jLabelPerfilCarreraCampo1AR;
+    private javax.swing.JLabel jLabelPerfilCarreraCampo1AR1;
     private javax.swing.JLabel jLabelPerfilCorreo;
     private javax.swing.JLabel jLabelPerfilCorreo1;
+    private javax.swing.JLabel jLabelPerfilCorreo2;
     private javax.swing.JLabel jLabelPerfilCorreoCampo;
     private javax.swing.JLabel jLabelPerfilCorreoCampoAR;
+    private javax.swing.JLabel jLabelPerfilCorreoCampoAR1;
     private javax.swing.JLabel jLabelPerfilDireccion;
     private javax.swing.JLabel jLabelPerfilDireccion1;
+    private javax.swing.JLabel jLabelPerfilDireccion2;
     private javax.swing.JLabel jLabelPerfilDireccionCampo;
     private javax.swing.JLabel jLabelPerfilDireccionCampoAR;
+    private javax.swing.JLabel jLabelPerfilDireccionCampoAR1;
     private javax.swing.JLabel jLabelPerfilEdad;
     private javax.swing.JLabel jLabelPerfilEdad1;
+    private javax.swing.JLabel jLabelPerfilEdad2;
     private javax.swing.JLabel jLabelPerfilEdadCampo;
     private javax.swing.JLabel jLabelPerfilEdadCampoAR;
+    private javax.swing.JLabel jLabelPerfilEdadCampoAR1;
     private javax.swing.JLabel jLabelPerfilNombre;
     private javax.swing.JLabel jLabelPerfilNombre1;
+    private javax.swing.JLabel jLabelPerfilNombre2;
     private javax.swing.JLabel jLabelPerfilNombreAmigoRegistrado;
+    private javax.swing.JLabel jLabelPerfilNombreAmigoRegistrado1;
     private javax.swing.JLabel jLabelPerfilNombreCampo;
     private javax.swing.JLabel jLabelPerfilNombreCampoAR;
+    private javax.swing.JLabel jLabelPerfilNombreCampoAR1;
     private javax.swing.JLabel jLabelPerfilTelefono;
     private javax.swing.JLabel jLabelPerfilTelefono1;
+    private javax.swing.JLabel jLabelPerfilTelefono2;
     private javax.swing.JLabel jLabelPerfilTelefonoCampo;
     private javax.swing.JLabel jLabelPerfilTelefonoCampoAR;
+    private javax.swing.JLabel jLabelPerfilTelefonoCampoAR1;
     private javax.swing.JLabel jLabelPerfilYearCarrera;
     private javax.swing.JLabel jLabelPerfilYearCarrera1;
+    private javax.swing.JLabel jLabelPerfilYearCarrera2;
     private javax.swing.JLabel jLabelPerfilYearCarreraCampo;
     private javax.swing.JLabel jLabelPerfilYearCarreraCampoAR;
+    private javax.swing.JLabel jLabelPerfilYearCarreraCampoAR1;
     private javax.swing.JLabel jLabelRegistroCarrera;
     private javax.swing.JLabel jLabelRegistroCorreo;
     private javax.swing.JLabel jLabelRegistroDireccion;
@@ -690,6 +824,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRegistroYearCarrera;
     private javax.swing.JLayeredPane jLayeredPaneLogin;
     private javax.swing.JLayeredPane jLayeredPanePerfil;
+    private javax.swing.JLayeredPane jLayeredPanePerfilAgregarAmigos;
     private javax.swing.JLayeredPane jLayeredPanePerfilAmigos;
     private javax.swing.JLayeredPane jLayeredPaneRegistro;
     private javax.swing.JTabbedPane jTabbedPaneOpciones;
