@@ -9,10 +9,10 @@ import java.util.LinkedList;
  * @author Lucía Solís Ceciliano
  * @author Miller Ruíz Urbina
  */
-public class NodoVertice {
+public class NodoPerfil {
     //Variables Globales
     private boolean EsVisitado;
-    public LinkedList <NodoArista> Aristas;
+    public LinkedList <NodoAmistad> Aristas;
     private String ID, Nombre, Apellido1, Apellido2, Carrera, Direccion, 
             Telefono, Email, Contraseña;
     private int Edad, Año;
@@ -21,7 +21,7 @@ public class NodoVertice {
     /**
      * Método constructor.
      */
-    public NodoVertice(){
+    public NodoPerfil(){
         this.EsVisitado = false;
         this.Aristas  = new LinkedList<>();
     }

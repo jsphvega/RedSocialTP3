@@ -6,7 +6,7 @@ package Grafos;
  * @author Lucía Solís Ceciliano
  * @author Miller Ruíz Urbina
  */
-public class NodoArista {
+public class NodoAmistad {
     //Variables Globales
     private String Etiqueta;
     private String ID;
