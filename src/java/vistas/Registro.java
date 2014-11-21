@@ -283,8 +283,29 @@ public class Registro extends javax.swing.JFrame {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
+        boolean camposValidos = veficarCampos();
+        if (!camposValidos){
+            
+        }
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
+    
+    public boolean veficarCampos(){
+        boolean resultado = false;
+        String nombre = jTextFieldRegistroNombre.getText().trim();
+        String edad = jTextFieldRegistroEdad.getText().trim();
+        String carrera = jTextFieldRegistroCarrera.getText().trim();
+        String anoCarrera = jTextFieldRegistroYearCarrera.getText().trim();
+        String direccion = jTextFieldRegistroDireccion.getText().trim();
+        String telefono = jTextFieldRegistroTelefono.getText().trim();
+        String correo = jTextFieldRegistroCorreo.getText().trim();
+        if (!nombre.isEmpty() && !edad.isEmpty() && !carrera.isEmpty()
+                && !anoCarrera.isEmpty() && !direccion.isEmpty()
+                && !telefono.isEmpty() && !correo.isEmpty()){
+            resultado = true;
+        }
+        return resultado;
+    }
     /**
      * @param args the command line arguments
      */
