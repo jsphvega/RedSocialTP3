@@ -21,7 +21,7 @@ public class Grafos {
     }
 
     /**
-     * Método que permite agregar un vértice al grafo.
+     * Método que permite agregar un perfil al grafo.
      * @param ID
      * @param Apellido1
      * @param Nombre
@@ -56,15 +56,25 @@ public class Grafos {
         Perfiles.add(Nodo);
     }
 
-    //M�todo para agregar una arista al grafo
-    public void agregarArista(String origen, String destino, String etiqueta){
-        NodoAmistad n = new NodoAmistad();
-        n.setEtiqueta(etiqueta);
-        n.setVertice(destino);
-        buscarVertice(origen).Aristas.add(n);  //Buscar el v�rtice origen y agrega un nodo al final de la lista de aristas de ese v�rtice
+    /**
+     * Método para agregar una relación de amistad al grafo
+     * @param ID1
+     * @param ID2
+     * @param Etiqueta
+     */
+    public void AgregarAmistad(String ID1, String ID2, String Etiqueta){
+        NodoAmistad Nodo1 = new NodoAmistad();
+        Nodo1.setEtiqueta(Etiqueta);
+        Nodo1.setID(ID2);
+        buscarVertice(ID1).Aristas.add(Nodo1);
+        
+        NodoAmistad Nodo2 = new NodoAmistad();
+        Nodo2.setEtiqueta(Etiqueta);
+        Nodo2.setID(ID1);
+        buscarVertice(ID2).Aristas.add(Nodo2);
     }
 
-    //M�todo para buscar un v�rtice en la lista de Perfiles del grafo seg�n el dato indicado
+    //M�todo para buscar un v�rtice en la lista de Perfiles del grafo seg�Nodo el dato indicado
     public NodoPerfil buscarVertice(String v){
         //Recorre la lista de Perfiles
         for (NodoPerfil vertice : this.Perfiles) {
@@ -98,7 +108,7 @@ public class Grafos {
                 return vertice;
             }
         }
-        return null; //Si todos est�n visitados retorna null
+        return null; //Si todos est�Nodo visitados retorna null
     }
 
     //M�todo para imprimir el grafo recorriendo la lista de v�rtices y por cada v�rtice imprimiendo la lista de aristas que tiene
@@ -120,7 +130,7 @@ public class Grafos {
         }
     }
 
-    //M�todo para verificar si todos los nodos del grafo est�n visitados
+    //M�todo para verificar si todos los nodos del grafo est�Nodo visitados
     public boolean todosVisitados(){
         for (NodoPerfil vertice : this.Perfiles) {
             if (!vertice.isEsVisitado()) {
@@ -165,7 +175,7 @@ public class Grafos {
 
         NodoPerfil actual = buscarVertice(inicial); //Busca el v�rtice inicial para el recorrido en la lista de v�rtices
 
-        while(actual != null)  //Ciclo para verificar que todos los v�rtices est�n visitados
+        while(actual != null)  //Ciclo para verificar que todos los v�rtices est�Nodo visitados
         {
             //Si el nodo inicial no est� visitado
             if(!actual.isEsVisitado()){
@@ -173,13 +183,13 @@ public class Grafos {
                 actual.setEsVisitado(true);	//Lo actualiza como visitado
             }
 
-            //Revisa todos los nodos adyacentes del nodo reci�n visitado
+            //Revisa todos los nodos adyacentes del nodo reci�Nodo visitado
             for (NodoAmistad Arista : actual.Aristas) {
                 if (!buscarVertice(Arista.getVertice()).isEsVisitado()) {
                     DFS(Arista.getVertice()); //Hace la llamada recursiva para realizar el recorrido en el nodo adyacente
                 }
             }
-            //Verifica si queda alg�n nodo sin visitar
+            //Verifica si queda alg�Nodo nodo sin visitar
             actual = buscarVerticeNOVisitado();
         }
     }
@@ -195,7 +205,7 @@ public class Grafos {
         System.out.println("Recorrido en anchura");
         actual = buscarVertice(inicial); //Busca el v�rtice para iniciar el recorrido en la lista de v�rtices del grafo
 
-        //Ciclo para verificar que todos los nodos est�n visitados
+        //Ciclo para verificar que todos los nodos est�Nodo visitados
         while(actual != null)
         {
             //Si el nodo actual no ha sido visitado
@@ -204,7 +214,7 @@ public class Grafos {
                 actual.setEsVisitado(true); //Indica que el v�rtice fue visitado
                 Cola.add(actual);  //Agrega el v�rtice a la cola(estructura auxiliar)
             }
-            //Busca todos los v�rtices adyacentes al v�rtice reci�n visitado
+            //Busca todos los v�rtices adyacentes al v�rtice reci�Nodo visitado
             for(int j = 0; j < actual.Aristas.size(); j++){
                 if(! buscarVertice(actual.Aristas.get(j).getVertice()).isEsVisitado()){ //Si el v�rtice no se ha visitado aun
                     System.out.print(actual.Aristas.get(j).getVertice() + " ");  //Se imprime el v�rtice
