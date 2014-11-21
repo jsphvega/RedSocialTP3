@@ -131,16 +131,19 @@ public class Grafos {
         return null;
     }
     
-    
-    //M�todo para inicializar todos los nodos como no visitados
+    /**
+     * Método para inicializar todos los nodos como no visitados
+     */
     public void inicializarVisitados(){
         for (NodoPerfil vertice : this.Perfiles) {
             vertice.setEsVisitado(false);
         }
     }
 
-    //M�todo para verificar si todos los nodos del grafo est�Nodo visitados
-    public boolean todosVisitados(){
+    /**
+     * Método para verificar todos los nodos del grafo
+     */
+    public boolean IsTodosVisitados(){
         for (NodoPerfil vertice : this.Perfiles) {
             if (!vertice.isEsVisitado()) {
                 return false;
