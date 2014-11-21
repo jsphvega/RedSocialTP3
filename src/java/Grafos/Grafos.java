@@ -66,11 +66,11 @@ public class Grafos {
     public void AgregarAmistad(String ID1, String ID2){
         NodoAmistad Nodo1 = new NodoAmistad();
         Nodo1.setID(ID2);
-        this.Perfiles.get(BuscaPosPerfil(ID1)).Relaciones.add(Nodo1);
+        this.Perfiles.get(BuscaPosPerfil(ID1)+1).Relaciones.add(Nodo1);
         
         NodoAmistad Nodo2 = new NodoAmistad();
         Nodo2.setID(ID1);
-        this.Perfiles.get(BuscaPosPerfil(ID2)).Relaciones.add(Nodo2);
+        this.Perfiles.get(BuscaPosPerfil(ID2)+1).Relaciones.add(Nodo2);
     }
 
     /**
