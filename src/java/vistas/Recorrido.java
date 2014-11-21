@@ -19,7 +19,7 @@ public final class Recorrido extends javax.swing.JFrame {
                 "8852-6761", "j-vv01@hotmail.com", "probando", 19, 2014, null);
         g.AgregaPerfil("malusoce", "Lucia", "Solis", "Ceciliano", "ATI", "San Pedro, Montes de Oca", 
                 "9999-6666", "malusoce96@gmail.com", "probando", 18, 2014, null);   
-        g.AgregarAmistad(g.BuscaPerfil("jsphvega"), g.BuscaPerfil("malusoce"));
+        g.AgregarAmistad("jsphvega","malusoce");
         ArrayList<NodoPerfil> path = g.dijkstra(g.BuscaPerfil("jsphvega"), g.BuscaPerfil("malusoce"));
          
         for (NodoPerfil x : path)
