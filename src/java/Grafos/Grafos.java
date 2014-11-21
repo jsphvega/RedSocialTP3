@@ -132,36 +132,6 @@ public class Grafos {
     }
     
     
-    
-
-    
-
-
-    //M�todo para buscar el primer v�rtice del grafo que est� sin visitar
-    public NodoPerfil buscarVerticeNOVisitado(){
-
-        //Recorre la lista de v�rtices
-        for (NodoPerfil vertice : this.Perfiles) {
-            if (!vertice.isEsVisitado()) {
-                //Si encuentra una no visitado lo retorna
-                return vertice;
-            }
-        }
-        return null; //Si todos est�Nodo visitados retorna null
-    }
-
-    //M�todo para imprimir el grafo recorriendo la lista de v�rtices y por cada v�rtice imprimiendo la lista de aristas que tiene
-    public void imprimeGrafo(){
-        NodoPerfil actual;
-        for (NodoPerfil vertice : this.Perfiles) {
-            actual = vertice;
-            System.out.println("Vertice : " + actual.getDato());
-            for (NodoAmistad Arista : actual.Aristas) {
-                System.out.println("Arista de "+actual.getDato()+ " a " + Arista.getVertice() + " con etiqueta " + Arista.getEtiqueta());
-            }
-        }
-    }
-
     //M�todo para inicializar todos los nodos como no visitados
     public void inicializarVisitados(){
         for (NodoPerfil vertice : this.Perfiles) {
@@ -177,90 +147,5 @@ public class Grafos {
             }
         }
         return true;	//Si encuentra uno visitado retorna true
-    }
-
-    
-    
-
-    //M�todo para realizar el recorrido en profundidad en el grafo
-    public void recorridoProfundidad(String inicial){
-        inicializarVisitados();  //Inicializa todos los nodos como no visitados
-        System.out.println("Recorrido en profundidad");
-        DFS(inicial); //Hace la llamada al m�todo que realiza el algoritmo
-        System.out.println();
-    }
-
-    private void DFS(String inicial){
-
-        NodoPerfil actual = BuscaPerfil(inicial); //Busca el v�rtice inicial para el recorrido en la lista de v�rtices
-
-        while(actual != null)  //Ciclo para verificar que todos los v�rtices est�Nodo visitados
-        {
-            //Si el nodo inicial no est� visitado
-            if(!actual.isEsVisitado()){
-                System.out.print(actual.getDato() + " "); //Imprime el v�rtice
-                actual.setEsVisitado(true);	//Lo actualiza como visitado
-            }
-
-            //Revisa todos los nodos adyacentes del nodo reci�Nodo visitado
-            for (NodoAmistad Arista : actual.Aristas) {
-                if (!BuscaPerfil(Arista.getVertice()).isEsVisitado()) {
-                    DFS(Arista.getVertice()); //Hace la llamada recursiva para realizar el recorrido en el nodo adyacente
-                }
-            }
-            //Verifica si queda alg�Nodo nodo sin visitar
-            actual = buscarVerticeNOVisitado();
-        }
-    }
-
-	//M�todo para recorrer el grafo en anchura
-    public void recorridoAnchura(String inicial){
-
-        NodoPerfil actual;
-        LinkedList <NodoPerfil> Cola = new LinkedList<>();	//Estructura auxiliar para hacer el recorrido
-
-        inicializarVisitados(); //Inicializa todos los nodos como no visitados
-
-        System.out.println("Recorrido en anchura");
-        actual = BuscaPerfil(inicial); //Busca el v�rtice para iniciar el recorrido en la lista de v�rtices del grafo
-
-        //Ciclo para verificar que todos los nodos est�Nodo visitados
-        while(actual != null)
-        {
-            //Si el nodo actual no ha sido visitado
-            if(!actual.isEsVisitado()){
-                System.out.print(actual.getDato() + " "); //Imprime el v�rtice
-                actual.setEsVisitado(true); //Indica que el v�rtice fue visitado
-                Cola.add(actual);  //Agrega el v�rtice a la cola(estructura auxiliar)
-            }
-            //Busca todos los v�rtices adyacentes al v�rtice reci�Nodo visitado
-            for(int j = 0; j < actual.Aristas.size(); j++){
-                if(! BuscaPerfil(actual.Aristas.get(j).getVertice()).isEsVisitado()){ //Si el v�rtice no se ha visitado aun
-                    System.out.print(actual.Aristas.get(j).getVertice() + " ");  //Se imprime el v�rtice
-                    Cola.add(BuscaPerfil(actual.Aristas.get(j).getVertice()));    //Se agrega el v�rtice a la cola
-                    BuscaPerfil(actual.Aristas.get(j).getVertice()).setEsVisitado(true);  //Se indica que el v�rtice ha sido visitado
-                }
-            }
-
-            //Mientras la cola no est� vac�a
-            while(Cola.size() > 0)
-            {
-                NodoPerfil temp1;
-
-                for(int x = 0; x < Cola.getFirst().Aristas.size(); x++){
-                    //Obtiene el primer v�rtice en la cola
-                    temp1 = BuscaPerfil(Cola.getFirst().Aristas.get(x).getVertice());
-                    if(!temp1.isEsVisitado()){  //Verifica si el primero de la cola no ha sido visitado
-                        System.out.print(temp1.getDato() + " "); //Imprime el v�rtice
-                        temp1.setEsVisitado(true);	//Indica que el v�rtice se ha visitado
-                        Cola.add(temp1);	//Agrega el v�rtice al final de la cola
-                    }
-                }
-                //Elimina el primer v�rtice de la cola
-                Cola.removeFirst();
-            }
-            actual = buscarVerticeNOVisitado();//Verifica si aun quedan v�rtices sin visitar
-        }
-        System.out.println();
     }
 }
