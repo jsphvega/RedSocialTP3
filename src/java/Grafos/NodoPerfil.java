@@ -12,7 +12,10 @@ import java.util.LinkedList;
 public class NodoPerfil {
     //Variables Globales
     private boolean EsVisitado;
-    public LinkedList <NodoAmistad> Aristas;
+    public LinkedList <NodoAmistad> Relaciones;
+    public int TamañoRelaciones, Distancia;
+    public NodoPerfil Anterior;
+    
     private String ID, Nombre, Apellido1, Apellido2, Carrera, Direccion, 
             Telefono, Email, Contraseña;
     private int Edad, Año;
@@ -23,7 +26,7 @@ public class NodoPerfil {
      */
     public NodoPerfil(){
         this.EsVisitado = false;
-        this.Aristas  = new LinkedList<>();
+        this.Relaciones  = new LinkedList<>();
     }
 
     /**
@@ -232,5 +235,37 @@ public class NodoPerfil {
      */
     public void setContraseña(String Contraseña) {
         this.Contraseña = Contraseña;
+    }
+
+    /**
+     * Método que permite editar la distancia.
+     * @return int Distancia.
+     */
+    public int getDistancia() {
+        return Distancia;
+    }
+
+    /**
+     * Método que permite editar la distancia.
+     * @param Distancia
+     */
+    public void setDistancia(int Distancia) {
+        this.Distancia = Distancia;
+    }
+
+    /**
+     * Método que permite obtener el nodo anterior.
+     * @return NodoPerfil Anterior.
+     */
+    public NodoPerfil getAnterior() {
+        return Anterior;
+    }
+
+    /**
+     * Método que permite editar el nodo anterior.
+     * @param Anterior
+     */
+    public void setAnterior(NodoPerfil Anterior) {
+        this.Anterior = Anterior;
     }
 }

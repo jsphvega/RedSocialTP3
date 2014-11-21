@@ -1,8 +1,5 @@
 package Grafos;
 
-import Grafos.NodoAmistad;
-import Grafos.NodoPerfil;
-import Grafos.Queue;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -236,6 +233,7 @@ public class Grafos {
 
         ArrayList<NodoPerfil> path = new ArrayList<>();
         // Itera los nodos antecesores hasta llegar a nulo, encontrando el camino corto
+
         for (NodoPerfil vertex = target; vertex != null; vertex = vertex.getAnterior()){
             path.add(vertex);
         }
