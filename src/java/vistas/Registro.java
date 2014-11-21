@@ -5,11 +5,21 @@
  */
 package vistas;
 
+import administradores.AdministradorPrincipal;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author RUBEN
  */
 public class Registro extends javax.swing.JFrame {
+
+    private String rutaFoto = "";
 
     /**
      * Creates new form Registro
@@ -163,6 +173,11 @@ public class Registro extends javax.swing.JFrame {
         jLabelRegistroFoto.setText("Agregar Foto");
         jLabelRegistroFoto.setOpaque(true);
         jLabelRegistroFoto.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabelRegistroFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelRegistroFotoMouseReleased(evt);
+            }
+        });
         jLayeredPane1.add(jLabelRegistroFoto);
         jLabelRegistroFoto.setBounds(290, 180, 150, 37);
 
@@ -284,13 +299,73 @@ public class Registro extends javax.swing.JFrame {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
         boolean camposValidos = veficarCampos();
-        if (!camposValidos){
-            
+        if (!camposValidos) {
+            JOptionPane.showMessageDialog(null,
+                    "Verfique que todos los datos se hayan ingresado",
+                    "información", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            String correo = jTextFieldRegistroCorreo.getText().trim();
+
+            boolean existePersona = AdministradorPrincipal.getInstance().existePersona(correo);
+
+            if (existePersona == false) {
+                String nombre = jTextFieldRegistroNombre.getText().trim();
+                String edad = jTextFieldRegistroEdad.getText().trim();
+                String carrera = jTextFieldRegistroCarrera.getText().trim();
+                String anoCarrera = jTextFieldRegistroYearCarrera.getText().trim();
+                String direccion = jTextFieldRegistroDireccion.getText().trim();
+                String telefono = jTextFieldRegistroTelefono.getText().trim();
+
+                AdministradorPrincipal.getInstance().insertarUsuario(rutaFoto, nombre, edad, carrera, anoCarrera, direccion, telefono, correo);
+
+                JOptionPane.showMessageDialog(null,
+                        "Se ha registrado exitosamente",
+                        "información", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "El correo debe ser único",
+                        "información", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
-    
-    public boolean veficarCampos(){
+    private void jLabelRegistroFotoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegistroFotoMouseReleased
+        //Crea un objeto de dialogo JFileChooser
+        JFileChooser elemento = new JFileChooser();
+
+        //Formatos de los iconos
+        elemento.setFileFilter(new FileNameExtensionFilter("Archivo PNG", "png"));
+        elemento.setFileFilter(new FileNameExtensionFilter("Archivo JPG", "jpg"));
+
+        //Variable que va a buscar la foto y almacenar la direccion
+        int option = elemento.showOpenDialog(this);
+
+        //Valida si se seleccionó alguna imagen
+        if (option == JFileChooser.APPROVE_OPTION) {
+            try {
+                //Obtener ruta y nombre al hacer click
+                String file = elemento.getSelectedFile().getPath();
+                rutaFoto = file;
+
+                //Convierte la imagen
+                ImageIcon foto = new ImageIcon(rutaFoto);
+                Icon icono = new ImageIcon(foto.getImage().getScaledInstance(150,
+                        140, Image.SCALE_SMOOTH));
+
+                //Asigna la imagen
+                jLabelFoto.setIcon(icono);
+
+            } catch (Exception ex) {
+            }
+        }
+
+        this.repaint();
+    }//GEN-LAST:event_jLabelRegistroFotoMouseReleased
+
+    public boolean veficarCampos() {
         boolean resultado = false;
         String nombre = jTextFieldRegistroNombre.getText().trim();
         String edad = jTextFieldRegistroEdad.getText().trim();
@@ -301,11 +376,12 @@ public class Registro extends javax.swing.JFrame {
         String correo = jTextFieldRegistroCorreo.getText().trim();
         if (!nombre.isEmpty() && !edad.isEmpty() && !carrera.isEmpty()
                 && !anoCarrera.isEmpty() && !direccion.isEmpty()
-                && !telefono.isEmpty() && !correo.isEmpty()){
+                && !telefono.isEmpty() && !correo.isEmpty() && !rutaFoto.isEmpty()) {
             resultado = true;
         }
         return resultado;
     }
+
     /**
      * @param args the command line arguments
      */
